@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Traducir cron · Ignacio Aranda</title><meta name="description" content="«0 12 * * *» a «todos los días a las 12:00»."><link rel="canonical" href="https://ignacioaranda.com/tools/cron"><meta name="robots" content="noindex, nofollow"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#071e30"><meta property="og:type" content="website"><meta property="og:title" content="Traducir cron · Ignacio Aranda"><meta property="og:description" content="«0 12 * * *» a «todos los días a las 12:00»."><meta property="og:url" content="https://ignacioaranda.com/tools/cron"><meta property="og:image" content="https://ignacioaranda.com/og/default.png"><meta property="og:locale" content="es_ES"><meta property="og:site_name" content="ignacioaranda.com"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Traducir cron · Ignacio Aranda"><meta name="twitter:description" content="«0 12 * * *» a «todos los días a las 12:00»."><meta name="twitter:image" content="https://ignacioaranda.com/og/default.png"><link rel="alternate" type="application/rss+xml" title="Registro de Ignacio Aranda" href="https://ignacioaranda.com/rss.xml"><script>
+      // Antes del primer pintado, para que no parpadee el tema equivocado.
+      // El cianotipo es el tema del sitio: el claro sólo si se pide a mano.
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script><style>.ejemplos[data-astro-cid-cylgayj2]{flex-wrap:wrap;gap:.4rem;margin-top:1rem;display:flex}.ejemplos[data-astro-cid-cylgayj2] button[data-astro-cid-cylgayj2]{font-family:var(--f-datos);color:var(--ink-dim);background:var(--paper-raised);border:1px solid var(--line);border-radius:var(--radio);cursor:pointer;padding:.25rem .5rem;font-size:.6875rem}.ejemplos[data-astro-cid-cylgayj2] button[data-astro-cid-cylgayj2]:hover{color:var(--trazo);border-color:var(--trazo)}.proximas[data-astro-cid-cylgayj2]{flex-direction:column;gap:1px;margin:.5rem 0 0;padding:0;list-style:none;display:flex}.proximas[data-astro-cid-cylgayj2] li[data-astro-cid-cylgayj2]{background:var(--paper-raised);border:1px solid var(--line);font-family:var(--f-datos);font-size:var(--t-datos);flex-wrap:wrap;justify-content:space-between;gap:1rem;padding:.5rem .8rem;display:flex}.proximas[data-astro-cid-cylgayj2] span[data-astro-cid-cylgayj2]:last-child{color:var(--ink-faint)}
+</style><link rel="stylesheet" href="/_astro/BaseLayout.BsHLZo0m.css"><link rel="stylesheet" href="/_astro/ToolLayout.GvmpvFrn.css"><script type="module" src="/_astro/page.DX7csi-I.js"></script></head><body><div class="sheet"><span class="reg reg--tl" aria-hidden="true"></span><span class="reg reg--tr" aria-hidden="true"></span><span class="reg reg--bl" aria-hidden="true"></span><span class="reg reg--br" aria-hidden="true"></span><header class="site-header"><a href="/" class="brand">Ignacio Aranda</a><div class="header-right"><nav class="site-nav" aria-label="Principal"><a href="/">Perfil</a><details class="nav-drop" data-drop><summary>A Bajo Nivel<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary><ul class="nav-drop__menu"><li><a href="/abajonivel">¿Qué es?</a></li><li><a href="/abajonivel/registro">Registro</a></li><li><a href="/abajonivel/proyectos">Proyectos</a></li><li><a href="/abajonivel/brain">Brain</a></li></ul></details><a href="/contacto">Contacto</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a tema claro"><svg class="icon-luna" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A6 6 0 0 1 6.4 2.5a6 6 0 1 0 7.1 7.1Z" stroke-linejoin="round"></path></svg><svg class="icon-sol" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="3.1"></circle><path d="M8 1v1.6M8 13.4V15M15 8h-1.6M2.6 8H1M12.9 3.1l-1.1 1.1M4.2 11.8l-1.1 1.1M12.9 12.9l-1.1-1.1M4.2 4.2 3.1 3.1" stroke-linecap="round"></path></svg></button></div></header><main><p class="eyebrow">Herramientas · Generadores</p><h1>Traducir cron</h1><p class="lead">«0 12 * * *» a «todos los días a las 12:00».</p><p class="tool-volver"><a href="/tools">← Todas las herramientas</a></p><div class="tool-opciones" data-astro-cid-cylgayj2><div class="campo" style="flex: 1 1 20rem;" data-astro-cid-cylgayj2><label for="expresion" data-astro-cid-cylgayj2>Expresión cron</label><input id="expresion" type="text" value="0 12 * * *" placeholder="0 12 * * *" autocomplete="off" spellcheck="false" style="font-size: 1.05rem;" data-expresion data-astro-cid-cylgayj2></div></div><div class="ejemplos" data-ejemplos data-astro-cid-cylgayj2></div><p class="tool-error" role="alert" hidden data-error data-astro-cid-cylgayj2></p><p class="tool-salida-simple" data-frase data-astro-cid-cylgayj2></p><div class="tool-col__cab" style="margin-top: 1.5rem;" data-astro-cid-cylgayj2><span class="tool-col__et" data-astro-cid-cylgayj2>Próximas ejecuciones</span><span class="tool-col__meta" data-astro-cid-cylgayj2>hora de este ordenador</span></div><ol class="proximas" data-proximas data-astro-cid-cylgayj2></ol><p class="tool-nota" data-astro-cid-cylgayj2>Los cinco campos son minuto, hora, día del mes, mes y día de la semana. Ojo con una rareza heredada de Vixie cron: si restringes a la vez el día del mes y el día de la semana, se ejecuta cuando se cumple <strong data-astro-cid-cylgayj2>cualquiera</strong>de los dos, no los dos a la vez.</p><p class="tool-nota">Todo ocurre en esta pestaña. Ni lo que escribes ni los archivos que abras salen de tu ordenador: no hay servidor al que enviarlos.</p></main><footer class="site-footer"><span>© 2026 Ignacio Aranda · Málaga, ES</span><span class="footer-links"><a href="/rss.xml">RSS</a><a href="https://github.com/Ignacio-Aranda" rel="me noopener">GitHub</a><a href="https://www.linkedin.com/in/ignacioaranda/" rel="me noopener">LinkedIn</a><a href="/contacto">Contacto</a></span></footer></div><script>
+      (() => {
+        const boton = document.getElementById('theme-toggle');
+        const raiz = document.documentElement;
+
+        const enClaro = () => raiz.dataset.theme === 'light';
+
+        const sincronizar = () => {
+          boton.setAttribute(
+            'aria-label',
+            enClaro() ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro',
+          );
+        };
+
+        boton.addEventListener('click', () => {
+          if (enClaro()) {
+            delete raiz.dataset.theme;
+            localStorage.setItem('theme', 'dark');
+          } else {
+            raiz.dataset.theme = 'light';
+            localStorage.setItem('theme', 'light');
+          }
+          sincronizar();
+        });
+
+        sincronizar();
+      })();
+
+      (() => {
+        const drop = document.querySelector('[data-drop]');
+        if (!drop) return;
+
+        document.addEventListener('click', (e) => {
+          if (drop.open && !drop.contains(e.target)) drop.open = false;
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && drop.open) {
+            drop.open = false;
+            drop.querySelector('summary').focus();
+          }
+        });
+      })();
+    </script></body></html><script type="module" src="/_astro/cron.astro_astro_type_script_index_0_lang.Dvonfvnv.js"></script>
