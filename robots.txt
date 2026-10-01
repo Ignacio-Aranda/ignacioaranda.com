@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /tools
+
+Sitemap: https://ignacioaranda.com/sitemap-index.xml

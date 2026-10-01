@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Intercomunicador de Escritorio basado en MQTT · Ignacio Aranda</title><meta name="description" content="Un dispositivo físico con cerebro ESP32-C3 que utiliza una matriz LED de 8x8 para enviar y recibir &quot;emojis&quot; a través de canales MQTT. Incluye un panel web para gestionar canales y diseñar mensajes en tiempo real."><link rel="canonical" href="https://ignacioaranda.com/abajonivel/proyectos/intercom-esp32"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#071e30"><meta property="og:type" content="website"><meta property="og:title" content="Intercomunicador de Escritorio basado en MQTT · Ignacio Aranda"><meta property="og:description" content="Un dispositivo físico con cerebro ESP32-C3 que utiliza una matriz LED de 8x8 para enviar y recibir &quot;emojis&quot; a través de canales MQTT. Incluye un panel web para gestionar canales y diseñar mensajes en tiempo real."><meta property="og:url" content="https://ignacioaranda.com/abajonivel/proyectos/intercom-esp32"><meta property="og:image" content="https://ignacioaranda.com/og/proyectos/intercom-esp32.png"><meta property="og:locale" content="es_ES"><meta property="og:site_name" content="ignacioaranda.com"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Intercomunicador de Escritorio basado en MQTT · Ignacio Aranda"><meta name="twitter:description" content="Un dispositivo físico con cerebro ESP32-C3 que utiliza una matriz LED de 8x8 para enviar y recibir &quot;emojis&quot; a través de canales MQTT. Incluye un panel web para gestionar canales y diseñar mensajes en tiempo real."><meta name="twitter:image" content="https://ignacioaranda.com/og/proyectos/intercom-esp32.png"><link rel="alternate" type="application/rss+xml" title="Registro de Ignacio Aranda" href="https://ignacioaranda.com/rss.xml"><script>
+      // Antes del primer pintado, para que no parpadee el tema equivocado.
+      // El cianotipo es el tema del sitio: el claro sólo si se pide a mano.
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.BsHLZo0m.css"><script type="module" src="/_astro/page.DX7csi-I.js"></script></head><body><div class="sheet"><span class="reg reg--tl" aria-hidden="true"></span><span class="reg reg--tr" aria-hidden="true"></span><span class="reg reg--bl" aria-hidden="true"></span><span class="reg reg--br" aria-hidden="true"></span><header class="site-header"><a href="/" class="brand">Ignacio Aranda</a><div class="header-right"><nav class="site-nav" aria-label="Principal"><a href="/">Perfil</a><details class="nav-drop" data-drop><summary aria-current="page">A Bajo Nivel<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary><ul class="nav-drop__menu"><li><a href="/abajonivel">¿Qué es?</a></li><li><a href="/abajonivel/registro">Registro</a></li><li><a href="/abajonivel/proyectos" aria-current="page">Proyectos</a></li><li><a href="/abajonivel/brain">Brain</a></li></ul></details><a href="/contacto">Contacto</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a tema claro"><svg class="icon-luna" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A6 6 0 0 1 6.4 2.5a6 6 0 1 0 7.1 7.1Z" stroke-linejoin="round"></path></svg><svg class="icon-sol" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="3.1"></circle><path d="M8 1v1.6M8 13.4V15M15 8h-1.6M2.6 8H1M12.9 3.1l-1.1 1.1M4.2 11.8l-1.1 1.1M12.9 12.9l-1.1-1.1M4.2 4.2 3.1 3.1" stroke-linecap="round"></path></svg></button></div></header><main><article><p class="eyebrow">Proyectos · ABN-PRY-INT-001</p><h1>Intercomunicador de Escritorio basado en MQTT</h1><p class="lead">Un dispositivo físico con cerebro ESP32-C3 que utiliza una matriz LED de 8x8 para enviar y recibir &quot;emojis&quot; a través de canales MQTT. Incluye un panel web para gestionar canales y diseñar mensajes en tiempo real.</p><ul class="tags"><li><a class="tag" href="/tags/mqtt">mqtt</a></li><li><a class="tag" href="/tags/esp32">esp32</a></li><li><a class="tag" href="/tags/electronica">electrónica</a></li><li><a class="tag" href="/tags/comunicacion">comunicación</a></li><li><a class="tag" href="/tags/iot">iot</a></li></ul><div class="prose"><p>La idea era crear un sistema para poder comunicarnos en el trabajo sin tener que estar pendiente de  las notificaciones del móvil y convertir este proceso en un dispositivo física y retrho. Este proyecto es un <strong>intercomunicador de escritorio</strong> que permite a los usuarios enviarse mensajes visuales (emojis o pixel art) a través de una red local utilizando MQTT.</p>
+<p>En lugar de pantallas táctiles, la interacción se realiza mediante <em>switches</em> mecánicos de teclado de ordenador.</p>
+<hr>
+<h2 id="1-hardware-del-dispositivo">1. Hardware del Dispositivo</h2>
+<p>El núcleo del intercomunicador está pensado para ser barato, reactivo y llamativo.</p>
+<ul>
+<li><strong>Microcontrolador:</strong> ESP32-C3 (DevKitM-1). Un solo núcleo RISC-V, pero va sobrado para WiFi, MQTT y parsear JSON.</li>
+<li><strong>Display:</strong> Matriz LED RGB de 8x8 direccionable. Sería mejor algo más grande, diseñar iconos que se entiendan en 8x8 es complicado…</li>
+<li><strong>Interfaz de Entrada:</strong> Tres switches mecánicos de teclado (Izquierda, Centro/Enviar, Derecha).</li>
+<li><strong>Interruptor de Silencio:</strong> Un interruptor de dos posiciones para que el aparato no pite (para las reuniones).</li>
+<li><strong>Botón de Reset:</strong> Mantenerlo pulsado 3 segundos hace un reset de fábrica.</li>
+<li><strong>Feedback Auditivo:</strong> Buzzer pasivo para avisar de los mensajes entrantes.</li>
+</ul>
+<p>El mapa de pines queda así:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center">GPIO</th>
+<th style="text-align: left">Componente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center"><strong>10</strong></td>
+<td style="text-align: left">Switch Izquierda</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>20</strong></td>
+<td style="text-align: left">Switch Central (Enviar)</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>21</strong></td>
+<td style="text-align: left">Switch Derecha</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>4</strong></td>
+<td style="text-align: left">Interruptor de Silencio</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>3</strong></td>
+<td style="text-align: left">Botón Reset</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>8</strong></td>
+<td style="text-align: left">Buzzer Pasivo</td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>6</strong></td>
+<td style="text-align: left">Matriz de LEDs (datos)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Detalle del C3 (Si se usa S3 no es necesario):</strong>
+Los GPIO 20 y 21 son por defecto los del UART0. Para poder usarlos como botones hay que activar el Serial nativo por USB en el <code>platformio.ini</code>:</p>
+<pre class="astro-code astro-code-themes github-light night-owl" style="background-color:#fff;--shiki-dark-bg:#011627;color:#24292e;--shiki-dark:#d6deeb; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#C792EA">build_flags</span><span style="color:#24292E;--shiki-dark:#D6DEEB"> =</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#D6DEEB">    -D </span><span style="color:#D73A49;--shiki-dark:#C792EA">ARDUINO_USB_MODE</span><span style="color:#24292E;--shiki-dark:#D6DEEB">=1</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#D6DEEB">    -D </span><span style="color:#D73A49;--shiki-dark:#C792EA">ARDUINO_USB_CDC_ON_BOOT</span><span style="color:#24292E;--shiki-dark:#D6DEEB">=1</span></span></code></pre>
+</blockquote>
+<h2 id=""><img src="/proyectos/intercom.png" alt="Diagrama Conexiones Intercom"></h2>
+<h2 id="2-primer-arranque-sin-credenciales-en-el-código">2. Primer arranque: sin credenciales en el código</h2>
+<p>No quería tener que recompilar el firmware cada vez que cambia la WiFi o el broker, así que el dispositivo usa <strong>WiFiManager</strong>. La primera vez levanta un punto de acceso llamado <code>NICS_SETUP</code>; te conectas desde el móvil y en el portal cautivo metes la WiFi y, además, los datos del broker MQTT (IP, puerto, usuario y contraseña).</p>
+<hr>
+<h2 id="3-arquitectura-de-comunicación-mqtt">3. Arquitectura de Comunicación (MQTT)</h2>
+<p>Para que los dispositivos hablen entre sí, se ha montado un broker MQTT en la red local. Los usuarios no envían texto, sino que publican “toques” en distintos canales.</p>
+<p>El sistema utiliza un <strong>protocolo propio</strong> dividido en tres capas de <em>topics</em>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left">Topic MQTT</th>
+<th style="text-align: center">Payload</th>
+<th style="text-align: left">Retained</th>
+<th style="text-align: left">Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left"><code>/topics</code></td>
+<td style="text-align: center"><code>["sala1", "sala2"]</code></td>
+<td style="text-align: left">Sí</td>
+<td style="text-align: left">Lista global de canales disponibles.</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>/&lt;canal&gt;/config</code></td>
+<td style="text-align: center">Array JSON de 64 colores hex</td>
+<td style="text-align: left">Sí</td>
+<td style="text-align: left">Define el “dibujo” o emoji asignado a ese canal.</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>/&lt;canal&gt;/post</code></td>
+<td style="text-align: center"><code>1</code> o <code>true</code></td>
+<td style="text-align: left">No</td>
+<td style="text-align: left">Trigger. Avisa de que alguien ha mandado el mensaje.</td>
+</tr>
+</tbody>
+</table>
+<p>Lo interesante está en la columna Retained. /topics y /config son estado: el broker guarda el último mensaje y se lo entrega a cualquiera que se suscriba, aunque llegue tarde. /post es un evento: si lo retuviera, cada vez que un dispositivo se reiniciara le saltaría un aviso fantasma.</p>
+<blockquote>
+<p><strong>Concepto Clave:</strong>
+El ESP32 no guarda los dibujos en su código. Funciona como un lienzo en blanco. Al arrancar sólo se suscribe a /topics; cuando le llega la lista, se suscribe a /config y /post de cada canal, y el broker le entrega los diseños retenidos al momento. Así se pueden cambiar los iconos en vivo sin reprogramar el microcontrolador, y además un dispositivo que se reinicia recupera todo él solo.</p>
+</blockquote>
+<p>Los datos del MQTT se guardan en la flash con Preferences, así que sobreviven a los reinicios. Si algún día cambia algo, basta con mantener el botón de reset 3 segundos: borra la WiFi y las preferencias y vuelve a sacar el portal.</p>
+<p><strong>Parseo de los diseños en el ESP32</strong>
+Cuando llega un /config, el dispositivo usa ArduinoJson para deserializar el array y convierte cada color hex de la web (#ff8800) a un entero que entiende la matriz.</p>
+<hr>
+<h2 id="4-cómo-funciona">4. Cómo funciona</h2>
+<p>El firmware es una pequeña máquina de estados en el loop(), sin delay() bloqueantes:</p>
+<ol>
+<li>Reposo: la matriz está apagada.</li>
+<li>Cualquier botón la despierta y entra en modo menú, mostrando el icono del canal actual.</li>
+<li>Izquierda / Derecha navegan por los canales de forma circular.</li>
+<li>Centro publica un 1 en /<canal>/post. Todos los dispositivos de ese canal reciben el toque.</li>
+<li>Si no tocas nada en 10 segundos, el menú se apaga solo.</li>
+</ol>
+<p>Cuando <strong>llega</strong> un post, el dispositivo muestra el icono del canal durante 3 segundos y suena un doble pitido (1000 Hz y 1500 Hz), salvo que el interruptor de silencio esté activado.</p>
+<p>Pasados los 3 segundos vuelve a donde estaba (al menú si lo tenías abierto, o se apaga).</p>
+<hr>
+<h2 id="5-el-panel-de-administración-web">5. El Panel de Administración Web</h2>
+<p>Para gestionar todo esto hay un panel web. Desde él se crean y eliminan los canales y se dibujan sus iconos.</p>
+<ol>
+<li>Eliges o creas un canal (por ejemplo: <code>cafe</code>).</li>
+<li>Dibujas en un editor web de matriz 8x8 el icono que lo representa (una taza).</li>
+<li>Al darle a <code>Push design</code>, la web empaqueta los colores y los publica vía MQTT.</li>
+<li>Todos los intercomunicadores conectados actualizan su interfaz al instante.</li>
+<li>Con <code>Fire post</code> puedes lanzar un toque al canal directamente desde la web.</li>
+</ol>
+<p>Además, el backend también está suscrito a /topics: si otra instancia cambia la lista de canales, se entera y la sincroniza.</p>
+<hr>
+<h2 id="6-futuros-cambios">6. Futuros cambios</h2>
+<ul>
+<li>Una matriz más grande. 8x8 da para lo justo. Con 16x16 se podrían hacer iconos con mucho más detalles.</li>
+<li>Ahora mismo el post es un <code>1</code>, es decir, no hay un ID detrás que te indique quien es el que ha mandado el mensaje.</li>
+</ul>
+<blockquote>
+<p><strong>Código y modelos 3D:</strong>
+El repositorio del proyecto (firmware, panel web y los modelos 3D de la carcasa) es privado pero si te interesa alguna parte, <a href="/contacto">escríbeme</a> y te lo paso sin problema.</p>
+</blockquote>
+</div><dl class="titleblock"><div><dt>Código</dt><dd>ABN-PRY-INT-001</dd></div><div><dt>Fecha</dt><dd><time datetime="2026-09-28">2026-09-28</time></dd></div><div><dt>Estado</dt><dd>Terminado</dd></div></dl></article></main><footer class="site-footer"><span>© 2026 Ignacio Aranda · Málaga, ES</span><span class="footer-links"><a href="/rss.xml">RSS</a><a href="https://github.com/Ignacio-Aranda" rel="me noopener">GitHub</a><a href="https://www.linkedin.com/in/ignacioaranda/" rel="me noopener">LinkedIn</a><a href="/contacto">Contacto</a></span></footer></div><script>
+      (() => {
+        const boton = document.getElementById('theme-toggle');
+        const raiz = document.documentElement;
+
+        const enClaro = () => raiz.dataset.theme === 'light';
+
+        const sincronizar = () => {
+          boton.setAttribute(
+            'aria-label',
+            enClaro() ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro',
+          );
+        };
+
+        boton.addEventListener('click', () => {
+          if (enClaro()) {
+            delete raiz.dataset.theme;
+            localStorage.setItem('theme', 'dark');
+          } else {
+            raiz.dataset.theme = 'light';
+            localStorage.setItem('theme', 'light');
+          }
+          sincronizar();
+        });
+
+        sincronizar();
+      })();
+
+      (() => {
+        const drop = document.querySelector('[data-drop]');
+        if (!drop) return;
+
+        document.addEventListener('click', (e) => {
+          if (drop.open && !drop.contains(e.target)) drop.open = false;
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && drop.open) {
+            drop.open = false;
+            drop.querySelector('summary').focus();
+          }
+        });
+      })();
+    </script></body></html>
