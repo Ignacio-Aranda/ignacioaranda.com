@@ -1,0 +1,5 @@
+import{t as e}from"./panel.Daee-elJ.js";var t=document.querySelector(`[data-modo]`),n=document.querySelector(`[data-ordenar]`),r=e=>Array.isArray(e)?e.map(r):e&&typeof e==`object`?Object.fromEntries(Object.entries(e).sort(([e],[t])=>e.localeCompare(t,`es`)).map(([e,t])=>[e,r(t)])):e,i=(e,t)=>{let n=t.match(/position (\d+)/);if(!n)return t;let r=Number(n[1]),i=e.slice(0,r),a=i.split(`
+`).length,o=r-i.lastIndexOf(`
+`),s=e.split(`
+`)[a-1]?.trim().slice(0,60)??``;return`Línea ${a}, columna ${o}: ${t.replace(/ in JSON at position \d+.*/,``)}\n${s}`},a=e(e=>{let a;try{a=JSON.parse(e)}catch(t){throw Error(i(e,t.message))}let o=n.checked?r(a):a;if(t.value===`min`)return JSON.stringify(o);let s=t.value===`tab`?`	`:Number(t.value);return JSON.stringify(o,null,s)},{metaSalida:e=>e?`${e.split(`
+`).length.toLocaleString(`es-ES`)} líneas · ${e.length.toLocaleString(`es-ES`)} car.`:``,descarga:e=>e?{nombre:`datos.json`,tipo:`application/json`}:null});t.addEventListener(`change`,()=>a?.ejecutar()),n.addEventListener(`change`,()=>a?.ejecutar());

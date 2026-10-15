@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Unir PDF · Ignacio Aranda</title><meta name="description" content="Junta varios PDF en uno solo, en el orden que decidas."><link rel="canonical" href="https://ignacioaranda.com/tools/unir-pdf"><meta name="robots" content="noindex, nofollow"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#071e30"><meta property="og:type" content="website"><meta property="og:title" content="Unir PDF · Ignacio Aranda"><meta property="og:description" content="Junta varios PDF en uno solo, en el orden que decidas."><meta property="og:url" content="https://ignacioaranda.com/tools/unir-pdf"><meta property="og:image" content="https://ignacioaranda.com/og/default.png"><meta property="og:locale" content="es_ES"><meta property="og:site_name" content="ignacioaranda.com"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Unir PDF · Ignacio Aranda"><meta name="twitter:description" content="Junta varios PDF en uno solo, en el orden que decidas."><meta name="twitter:image" content="https://ignacioaranda.com/og/default.png"><link rel="alternate" type="application/rss+xml" title="Registro de Ignacio Aranda" href="https://ignacioaranda.com/rss.xml"><script>
+      // Antes del primer pintado, para que no parpadee el tema equivocado.
+      // El cianotipo es el tema del sitio: el claro sólo si se pide a mano.
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.BsHLZo0m.css"><link rel="stylesheet" href="/_astro/ToolLayout.GvmpvFrn.css"><script type="module" src="/_astro/page.DX7csi-I.js"></script></head><body><div class="sheet"><span class="reg reg--tl" aria-hidden="true"></span><span class="reg reg--tr" aria-hidden="true"></span><span class="reg reg--bl" aria-hidden="true"></span><span class="reg reg--br" aria-hidden="true"></span><header class="site-header"><a href="/" class="brand">Ignacio Aranda</a><div class="header-right"><nav class="site-nav" aria-label="Principal"><a href="/">Perfil</a><details class="nav-drop" data-drop><summary>A Bajo Nivel<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary><ul class="nav-drop__menu"><li><a href="/abajonivel">¿Qué es?</a></li><li><a href="/abajonivel/registro">Registro</a></li><li><a href="/abajonivel/proyectos">Proyectos</a></li><li><a href="/abajonivel/brain">Brain</a></li></ul></details><a href="/contacto">Contacto</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a tema claro"><svg class="icon-luna" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A6 6 0 0 1 6.4 2.5a6 6 0 1 0 7.1 7.1Z" stroke-linejoin="round"></path></svg><svg class="icon-sol" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="3.1"></circle><path d="M8 1v1.6M8 13.4V15M15 8h-1.6M2.6 8H1M12.9 3.1l-1.1 1.1M4.2 11.8l-1.1 1.1M12.9 12.9l-1.1-1.1M4.2 4.2 3.1 3.1" stroke-linecap="round"></path></svg></button></div></header><main><p class="eyebrow">Herramientas · Documentos</p><h1>Unir PDF</h1><p class="lead">Junta varios PDF en uno solo, en el orden que decidas.</p><p class="tool-volver"><a href="/tools">← Todas las herramientas</a></p><div class="soltar" data-soltar><input type="file" accept="application/pdf,.pdf" multiple hidden data-entrada><p class="soltar__titulo">Suelta aquí tus PDF</p><button type="button" class="boton" data-elegir>Elegir archivos</button><p class="soltar__nota">Puedes soltar varios a la vez. Se añaden al final de la lista.</p></div><p class="tool-error" role="alert" hidden data-error></p><section class="tool-panel" hidden data-panel><div class="reg-tabla"><div class="arch-cab" aria-hidden="true"><span>Orden</span><span>Archivo</span><span>Páginas</span><span>Peso</span><span>Mover</span></div><ol class="arch-lista" data-lista></ol></div><div class="tool-pie"><p class="tool-pie__cuenta" data-total aria-live="polite"></p><div class="tool-pie__acciones"><button type="button" class="boton" data-vaciar>Vaciar</button><button type="button" class="boton boton--fuerte" data-unir>Unir y descargar</button></div></div></section><p class="tool-nota">Al unir se descartan los metadatos de autor y programa de los originales, y no se escribe ninguno nuevo. El resultado no dice de dónde salió.</p><p class="tool-nota">Todo ocurre en esta pestaña. Ni lo que escribes ni los archivos que abras salen de tu ordenador: no hay servidor al que enviarlos. Funciona con pdf-lib.</p></main><footer class="site-footer"><span>© 2026 Ignacio Aranda · Málaga, ES</span><span class="footer-links"><a href="/rss.xml">RSS</a><a href="https://github.com/Ignacio-Aranda" rel="me noopener">GitHub</a><a href="https://www.linkedin.com/in/ignacioaranda/" rel="me noopener">LinkedIn</a><a href="/contacto">Contacto</a></span></footer></div><script>
+      (() => {
+        const boton = document.getElementById('theme-toggle');
+        const raiz = document.documentElement;
+
+        const enClaro = () => raiz.dataset.theme === 'light';
+
+        const sincronizar = () => {
+          boton.setAttribute(
+            'aria-label',
+            enClaro() ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro',
+          );
+        };
+
+        boton.addEventListener('click', () => {
+          if (enClaro()) {
+            delete raiz.dataset.theme;
+            localStorage.setItem('theme', 'dark');
+          } else {
+            raiz.dataset.theme = 'light';
+            localStorage.setItem('theme', 'light');
+          }
+          sincronizar();
+        });
+
+        sincronizar();
+      })();
+
+      (() => {
+        const drop = document.querySelector('[data-drop]');
+        if (!drop) return;
+
+        document.addEventListener('click', (e) => {
+          if (drop.open && !drop.contains(e.target)) drop.open = false;
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && drop.open) {
+            drop.open = false;
+            drop.querySelector('summary').focus();
+          }
+        });
+      })();
+    </script></body></html><script type="module" src="/_astro/unir-pdf.astro_astro_type_script_index_0_lang.G4QWkcqP.js"></script>
